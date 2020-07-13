@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/chat.css">
+    <script src="/public/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <!--标题-->
+    <header>
+        <div class="logo">
+            <img src="/public/img/logo.jpg" alt="">
+        </div>
+    </header>
+    <!--导航栏-->
+    <nav>
+        <ul>
+            {%if router == "/"%}
+            <li><a href="/" class="focus">首页</a></li>
+            {%else%}
+            <li><a href="/">首页</a></li>
+            {%endif%}
+            {%if router == "/chat"%}
+            <li><a href="/chat" class="focus">在线聊天室</a></li>
+            {%else%}
+            <li><a href="/chat">在线聊天室</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+    <main>
+        {%if !userInfo._id%}
+
+        <div class="not">你还没有的登录，请先 <a href="/" style="color: blue;">登录</a> </div>
+        {%else%}
+        <div class="wrapper">
+            <div class="w_head">
+                <h3>在线聊天室</h3>
+                <h5>当前共有0人在线</h5>
+            </div>
+            <div class="w_content">
+            </div>
+            <div class="w_send">
+                <textarea></textarea>
+                <div class="w_btn">send</div>
+            </div>
+        </div>
+        {%endif%}
+
+    </main>
+    <!-- <script crossorigin="anonymous" integrity="sha384-HHKD5G6fqvxz/wBz7BFYeOPzBKELGIZv5l5HAECcXD3zdAS6n8OppmPH9ZxGXY0G"
+        src="https://lib.baomitu.com/socket.io/2.3.0/socket.io.js"></script> -->
+    <script src="/public/js/socket.io.js"></script>
+    <script src="/public/js/chat.js">
+        // var socket = io.connect("localhost:8080"); //连接socket服务
+        // $("#btn").on("click", function () {
+        //     var mes = $("#text").val();
+        //     if (!mes) return;
+        //     $("#text").val("");
+        //     var obj = {
+        //         mes: mes,
+        //         userInfo: document.cookie
+        //     }
+        //     socket.send(obj); //发送消息到服务端
+        // });
+        // socket.on("message", function (mes) {
+        //     for (var i = 0; i < mes.chat.length; i++) {
+        //         if (mes.chat[i].userInfo == document.cookie) {
+        //             $(`<li class = "right">${mes.chat[i].mes.pop()}</li>`).appendTo($("ul", "main"));
+        //         } else {
+        //             $(`<li>${mes.chat[i].mes.pop()}</li>`).appendTo($("ul", "main"));
+        //         }
+        //     }
+
+
+        // });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="all">
+    <div class="detail">
+        <h1>{{contents.title}}</h1>
+        <div class="info">
+            <span>作者：{{contents.user.username}}</span>-
+            <span>时间：{{contents.addTime|date('Y年m月d日 H : i : s',-480)}}</span>-
+            <span>阅读：{{contents.views}}</span>-
+            <span>评论：<span class="num">0</span></span>
+        </div>
+        <p>{{contents.content}}</p>
+    </div>
+    <div class="comment">
+        <div class="com_head">
+            <div>
+                <h2>评论</h2>
+            </div>
+            <div>一共有<span>0</span>条评论</div>
+        </div>
+        {% if !userInfo._id %}
+        <a href="#login">
+            <div class="not">你还没有的登录，请先登录</div>
+        </a>
+        {%else%}
+        <h3>{{userInfo.username}}</h3>
+        <div class="send">
+            <input type="text" name="comment">
+            <input type="hidden" name="hidden" value="{{contents.id}}" id="hidden">
+            <input type="submit" class="sub">
+        </div>
+        <ul></ul>
+        {%endif%}
+    </div>
+    <div class="page">
+        <em><a>上一页</a></em>
+        <em></em>
+        <em><a>下一页</a></em>
+    </div>
+
+</div>
+<script src="/public/js/comment.js"></script>
+{%endblock%}

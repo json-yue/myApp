@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block main %}
+<ol class="breadcrumb">
+    <li><a href="/admin">管理首页</a></li>
+    <li><span>留言列表</span></li>
+</ol>
+<h3>留言列表</h3>
+<table class="table table-hover table-striped">
+    <tr>
+        <th>留言</th>
+        <th>文章</th>
+        <th>分类</th>
+        <th>时间</th>
+        <th>留言人</th>
+        <th>操作</th>
+    </tr>
+    {% for content in contents %}
+    {%for comment in content.comment%}
+    <tr>
+        <td>{{comment.content}}</td>
+        <td>{{content.title}}</td>
+        <td>{{content.category.name}}</td>
+        <td>{{comment.postTime|date('Y年m月d日 H : i : s',-480)}}</td>
+        <td>{{comment.username}}</td>
+        <td>
+            <a href="/admin/comment/delete?id1={{comment.id}}&id2={{content.id}}">删除</a>
+        </td>
+    </tr>
+    {%endfor%}
+    {% endfor %}
+</table>
+{%include 'page.html'%}
+{% endblock %}

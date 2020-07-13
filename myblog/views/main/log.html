@@ -1,0 +1,31 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="content_left">
+    <div class="text">
+        <ul>
+            {%if contents == ""%}
+            <li>
+                <h1>此分类没有内容</h1>
+            </li>
+            {%else%}
+            {%for content in contents%}
+            <li>
+                <h1>{{content.title}}</h1>
+                <div class="info">
+                    <span>作者：{{content.user.username}}</span>-
+                    <span>时间：{{content.addTime|date('Y年m月d日 H : i : s',-480)}}</span>-
+                    <span>阅读：{{content.views}}</span>-
+                    <span>评论：{{content.comment.length}}</span>
+                </div>
+                <h4>{{content.description}}</h4>
+                <div class="more"><a href="/view?contentid={{content.id}}">阅读全文</a></div>
+            </li>
+            {%endfor%}
+            {%endif%}
+
+        </ul>
+        <!-- 翻页 -->
+        {%include 'page.html'%}
+    </div>
+</div>
+{%endblock%}

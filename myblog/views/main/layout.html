@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <script src="/public/js/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <!--标题-->
+    <header>
+        <div class="logo">
+            <img src="/public/img/logo.jpg" alt="">
+        </div>
+    </header>
+    <!--导航栏-->
+    <nav>
+        <ul>
+            {%if router == "/"%}
+            <li><a href="/" class="focus">首页</a></li>
+            {%else%}
+            <li><a href="/">首页</a></li>
+            {%endif%}
+            {%if router == "/log"%}
+            <li><a href="/log" class="focus">日志</a></li>
+            {%else%}
+            <li><a href="/log">日志</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+    <!-- 主体 -->
+    <main>
+        <div class="content">
+            <!-- 内容 -->
+            {%block content%}{%endblock%}
+            <!-- 用户信息
+            登录
+        注册 -->
+            <div class="logn" id="login">
+                <ul>
+                    {% if userInfo._id %}
+                    <li class="userInfo">
+                        <h1>用户信息</h1>
+                        <div class="box"></div>
+                        <h5>{{userInfo.username}}</h5>
+                        <p>
+                            {% if userInfo.isAdmin %}
+                            <span>你好，你是管理员 <a href="/admin">点击进入管理</a></span>
+                            {% else %}
+                            <span>你好，欢迎光临我的博客！</span>
+                            {% endif %}
+                        </p>
+                        <p><span><i>退出</i></span></p>
+                    </li>
+                    {% else %}
+                    <li class="login">
+                        <h1>登录</h1>
+                        <div class="box"></div>
+                        <span>用户名：</span><input type="text" name="username"><br>
+                        <span>密&nbsp;&nbsp;&nbsp; 码：</span><input type="password" name="passwd"><br>
+                        <input type="submit" value="登录" class="sub">
+                        <p>还没有账号<span><a>立即注册</a></span></p>
+                        <b></b>
+                    </li>
+                    <li class="regist">
+                        <h1>注册</h1>
+                        <div class="box"></div>
+                        <span>用户名：</span><input type="text" name="username"><br>
+                        <span>密&nbsp;&nbsp;&nbsp; 码：</span><input type="password" name="passwd"><br>
+                        <span>确&nbsp;&nbsp;&nbsp; 认：</span><input type="password" name="repasswd"><br>
+                        <input type="submit" value="注册" class="sub">
+                        <p>已有账号<span><a>立即登录</a></span></p>
+                        <b></b>
+                    </li>
+                    {%endif%}
+                    <li>
+                        <div id="wrapper">
+                            <div class="date_head">
+                                <span></span>
+                            </div>
+                            <div class="date_week">
+                                <ul>
+                                    <li>日</li>
+                                    <li>一</li>
+                                    <li>二</li>
+                                    <li>三</li>
+                                    <li>四</li>
+                                    <li>五</li>
+                                    <li>六</li>
+                                </ul>
+                            </div>
+                            <div class="date_content">
+                                <ul>
+                    
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 社区 -->
+                    <li class="home">
+                        <h1>社区</h1>
+                        <div class="box"></div>
+                        <h3><a href="/chat">在线聊天室</a></h3>
+                    </li>
+                </ul>
+                <div></div>
+            </div>
+        </div>
+    </main>
+    <script src="/public/js/main.js"></script>
+</body>
+
+</html>

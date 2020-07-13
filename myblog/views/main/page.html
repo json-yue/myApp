@@ -1,0 +1,19 @@
+<div class="page">
+    {% if page <= 1 %}
+    <em><a>没有上一页了</a></em>
+    {% else %}
+    <em><a href="{{url}}?category={{category}}&page={{page - 1}}">上一页</a></em>
+    {% endif %}
+    {%if pages == 0%}
+    <em></em>
+    {%else%}
+    <em>
+        <span>{{page}}</span>/<span>{{pages}}</span>
+    </em>
+    {%endif%}
+    {% if page >= pages %}
+    <em><a>没有下一页了</a></em>
+    {% else %}
+    <em><a href="{{url}}?category={{category}}&page={{page + 1}}">下一页</a></em>
+    {% endif %}
+</div>
